@@ -32,15 +32,24 @@ $ads = [
 
 ];
 
-// var_dump($ads);
-
 $number = rand(0, count($ads) -1);
-// var_dump($number);
-// var_dump($ads[$number]);
 
 if($ads[$number]['is_active'] != true) {
-    $number = 0;
+    $number = rand(0, count($ads) -1);
 }
+
+
+// soluzione 2
+
+$activeAds = [];
+
+foreach($ads as $ad) {
+    if($ad['is_active'] != false) {
+        $activeAds[] = $ad;
+    }
+}
+
+$active_number = array_rand($activeAds, 1);
 
 ?>
 
@@ -51,14 +60,32 @@ if($ads[$number]['is_active'] != true) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>snack-1</title>
+
+    <style>
+        div {
+            width: 230px;
+            aspect-ratio: 1/1;
+        }
+
+        img {
+            max-width: 100%;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
-
+    <h2>soluzione 1</h2>
     <div>
-        <a href="<?= $ads[$number]['link'] ?>">
+        <a href="<?= $ads[$number]['link'] ?>" target="_blank">
             <img src="<?= $ads[$number]['image_path'] ?>" alt="">
         </a>
     </div>
 
+    <h2>soluzione 2</h2>
+    <div>
+    <a href="<?= $activeAds[$active_number]['link'] ?>" target="_blank">
+            <img src="<?= $ads[$active_number]['image_path'] ?>" alt="">
+        </a>
+    </div>
 </body>
 </html>
