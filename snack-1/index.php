@@ -38,7 +38,6 @@ if($ads[$number]['is_active'] != true) {
     $number = rand(0, count($ads) -1);
 }
 
-
 // soluzione 2
 
 $activeAds = [];
